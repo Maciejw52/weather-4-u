@@ -1,14 +1,14 @@
-import React from 'react';
-import { Card, CardContent, Typography, Grid, makeStyles } from '@mui/material';
+import React, {FC} from 'react';
+import { Card, CardContent, Typography, Grid } from '@mui/material';
 import Image from 'next/image';
 import styles from "./weather-card.module.css";
+import { WeatherCardProps } from '@/app/app.interface';
 
-const WeatherCard = ({ weatherData }) => {
-
+const WeatherCard: FC<WeatherCardProps> = ({ weatherData }) => {
   const { location, current } = weatherData;
 
   return (
-    <Card className={styles.card}>
+    <Card component='section' className={`bg-gray-100 rounded-lg shadow-md p-4 w-full`}>
       <CardContent>
         <Typography variant="h4" component="h2">
           {location.name}, {location.country}
@@ -29,13 +29,13 @@ const WeatherCard = ({ weatherData }) => {
             </Typography>
           </Grid>
         </Grid>
-        <Typography variant="body2" component="p">
+        <Typography variant="body2" component="p" className="text-gray-600">
           Wind: {current.wind_kph} km/h {current.wind_dir}
         </Typography>
-        <Typography variant="body2" component="p">
+        <Typography variant="body2" component="p" className="text-gray-600">
           Pressure: {current.pressure_mb} mb
         </Typography>
-        <Typography variant="body2" component="p">
+        <Typography variant="body2" component="p" className="text-gray-600">
           Humidity: {current.humidity}%
         </Typography>
       </CardContent>
@@ -44,4 +44,3 @@ const WeatherCard = ({ weatherData }) => {
 };
 
 export default WeatherCard;
-

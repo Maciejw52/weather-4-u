@@ -1,11 +1,11 @@
 'use client'
 
-import { Box, TextField } from '@mui/material';
+import { Box, TextField, Button, Typography  } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import  React, { useRef, SyntheticEvent } from 'react';
 
-export const SearchBox = ({ onSearch, isError, isSuccess }: {onSearch: (location: string) => Promise<void>, isError: boolean, isSuccess: boolean}) => {
+const SearchBox = ({ onSearch, isError, isSuccess }: SearchBoxProps) => {
   const locationString = useRef<HTMLInputElement | null>(null);
 
   const handleSearch = async (event: SyntheticEvent) => {
@@ -19,7 +19,7 @@ export const SearchBox = ({ onSearch, isError, isSuccess }: {onSearch: (location
     <Box
       component="form"
       sx={{
-        paddingTop: '1em',
+        padding: '2em',
         display: 'flex',
         maxWidth: '100%',
       }}
@@ -40,6 +40,11 @@ export const SearchBox = ({ onSearch, isError, isSuccess }: {onSearch: (location
           ),
         }}
       />
+      <Button type="submit" sx={{ marginLeft: '1em' }}>
+       <Typography>Search</Typography> 
+      </Button>
     </Box>
   );
 };
+
+export default SearchBox

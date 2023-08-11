@@ -1,28 +1,23 @@
 'use client'
 
 import React from 'react';
-
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Link from 'next/link';
 
 export const HeaderBar = () => {
   return (
-    <Box>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography
-            variant="h3"
-            noWrap
-            sx={{ flexGrow: 1, display: { sm: 'block', flex: '1', textAlign: 'center' } }}
-          >
+    <AppBar position="static">
+      <Toolbar sx={{ justifyContent: 'center' }}>
+        <Link href='/'>
+          <Typography variant="h3" sx={{ textAlign: 'center' }}>
             Weather4U
           </Typography>
-        </Toolbar>
-      </AppBar>
-    </Box>
+        </Link>
+      </Toolbar>
+    </AppBar>
   );
-}
+};
 
-export default HeaderBar
+export default HeaderBar;
