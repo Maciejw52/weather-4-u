@@ -12,6 +12,6 @@ export const fetchWeatherData = async (location: string) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    throw new Error('Error fetching weather data: ' + error.message);
+    throw new Error('Error fetching weather data');
   }
 };

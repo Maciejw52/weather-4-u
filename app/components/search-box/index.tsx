@@ -4,6 +4,7 @@ import { Box, TextField, Button, Typography  } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import  React, { useRef, SyntheticEvent } from 'react';
+import { SearchBoxProps } from '@/app/app.interface';
 
 const SearchBox = ({ onSearch, isError, isSuccess }: SearchBoxProps) => {
   const locationString = useRef<HTMLInputElement | null>(null);

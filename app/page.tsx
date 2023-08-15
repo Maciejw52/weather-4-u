@@ -6,8 +6,10 @@ import SearchBox from './components/search-box';
 import WeatherCard from './components/weather-card';
 import RecentlySearched from './components/recently-searched';
 import { fetchWeatherData } from './api/api';
+import { validateWeatherData } from './schema/weather-data.schema';
 
 const Home = () => {
+  const MAX_RECENT_SEARCHES = 5;
   const [weatherData, setWeatherData] = useState(null);
   const [recentSearches, setRecentSearches] = useState<Array<string>>([]);
   const [isError, setIsError] = useState(false);
@@ -21,10 +23,15 @@ const Home = () => {
 
     try {
       const data = await fetchWeatherData(location);
-      setWeatherData(data);
-      // Check if the location already exists in recentSearches
-      if (!recentSearches.includes(location)) {
-        setRecentSearches(prevSearches => [location, ...prevSearches]);
+
+      if (validateWeatherData(data)) {
+        setWeatherData(data);
+        // Check if the location already exists in recentSearches
+        if (!recentSearches.includes(location)) {
+          setRecentSearches(prevSearches => [location, ...prevSearches.slice(0, MAX_RECENT_SEARCHES - 1)]);
+        }
+      } else {
+        throw new Error('Invalid response data');
       }
     } catch (error) {
       console.error('Error fetching weather data:', error);

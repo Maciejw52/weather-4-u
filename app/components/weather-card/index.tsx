@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
 import { Card, CardContent, Typography, Grid } from '@mui/material';
 import Image from 'next/image';
-import styles from "./weather-card.module.css";
 import { WeatherCardProps } from '@/app/app.interface';
 
 const WeatherCard: FC<WeatherCardProps> = ({ weatherData }) => {
